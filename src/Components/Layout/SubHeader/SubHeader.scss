@@ -1,0 +1,26 @@
+.sub-header {
+    background-color: #f5f5f4;
+    padding: 136px 24px 38px 24px ;
+    @media (min-width: 768px) {
+      padding: 152px 40px 80px 40px ;
+    }
+    h1 {
+      font-size: 24px;
+      @media (min-width: 768px) {
+        font-size: 48px;
+        font-weight: 400;
+        line-height: 60px;
+        margin-bottom: 20px;
+      }
+    }
+    p {
+      font-size: 12px;
+      @media (min-width: 768px) {
+          font-size: 16px;
+        }
+    }
+    select {
+      height: 50px;
+      border-radius: 0px;
+    }
+  }

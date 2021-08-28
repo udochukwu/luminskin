@@ -1,0 +1,135 @@
+.products-section {
+  letter-spacing: 1px;
+  padding: 40px 25px;
+  background: #e2e6e3;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 20px;
+  grid-row-gap: 50px;
+  @media (min-width: 768px) {
+    padding: 40px 60px;
+    grid-template-columns: auto auto auto;
+    grid-column-gap: 20px;
+    grid-row-gap: 150px;
+  }
+  .product {
+    text-align: center;
+    img {
+      max-width: 100%;
+      width: 170px;
+      height: 170px;
+      object-fit: contain;
+    }
+    .title {
+      font-size: 12px;
+      line-height: 20px;
+      font-weight: 300;
+      text-align: center;
+      margin-top: 20px;
+      height: 50px;
+      @media (min-width: 768px) {
+        font-size: 14px;
+        line-height: 25px;
+      }
+    }
+    .price {
+      font-size: 14px;
+      line-height: 25px;
+      font-weight: 300;
+      text-align: center;
+      text-transform: uppercase;
+      @media (min-width: 768px) {
+        font-size: 18px;
+        line-height: 25px;
+      }
+    }
+    .btn {
+      font-size: 12px;
+      background-color: #4b5548;
+      border-radius: 0px;
+      color: #ffffff;
+      padding: 16px 16px;
+      min-width: 100%;
+      @media (min-width: 768px) {
+        min-width: 200px;
+      }
+      &:hover{
+          background-color: #343833;
+      }
+    }
+  }
+}
+.cart-item-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  letter-spacing: 1px;
+  padding: 30px 25px;
+  min-height: 100%;
+  height: fit-content;
+  .item-image{
+    max-width: 100%;
+    height: auto;
+    max-height: 40px;
+    @media (min-width: 768px) {
+      max-width: 100%;
+      height: auto;
+      max-height: 60px;
+    }
+  }
+  h4{
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  p{
+    font-size: 12px;
+    margin-bottom: 30px;
+    letter-spacing: 0.1px;
+    @media (min-width: 768px) {
+      font-size: 16px;
+      margin-bottom: 40px;
+    }
+  }
+  h6{
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+  }
+  label{
+    font-size: 12px;
+  }
+  select{
+    border-color: #ffffff;
+    padding: 10px;
+    border-radius: 0px;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    @media (min-width: 768px) {
+      padding: 16px;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+    & {
+:focus {
+        outline: none;
+        box-shadow: none;
+      }
+    }
+  }
+  button{
+    &.btn{
+      font-size: 12px;
+      background-color: #4b5548;
+      border-radius: 0px;
+      color: #ffffff;
+      padding: 16px 16px;
+      min-width: 100%;
+      margin-top: 50px;
+      text-transform: uppercase;
+      &:hover{
+          background-color: #343833;
+      }
+    }
+  }
+}

@@ -1,18 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.scss";
-// import { GET_PRODUCTS } from "Apollo/queries";
 import Header from "Components/Layout/Header";
-// import { useQuery } from "@apollo/client";
+import Cart from "Components/Layout/Cart";
+import { AppContext } from "./AppContext";
+import Products from "Components/Common/Products";
+import SubHeader from "Components/Layout/SubHeader";
+import { GET_PRODUCTS } from "Apollo/queries";
+import { useQuery } from "@apollo/client";
 
 function App() {
-  // const { loading, error, data } = useQuery(GET_PRODUCTS);
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
+  const [currency, setCurrency] = useState(
+    JSON.parse(localStorage.getItem("currency")) || "USD"
+  );
+  const [cartState, setCartState] = useState(false);
 
-  // if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error :(</p>;
+  const [products,setProducts] = useState([]);
+
+  function updateCurrency(newCurrency) {
+    setCurrency(newCurrency);
+    localStorage.setItem("currency", JSON.stringify(newCurrency));
+
+  }
+  function updateCart(newCart) {
+    setCart(newCart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
+  }
+  function toggleCart(state) {
+    setCartState(state);
+  }
+
+  function updateProducts(newProducts){
+    console.log('updating products..', newProducts)
+    setProducts(newProducts);
+  }
   return (
-    <div className="">
-      <Header />
-    </div>
+    <>
+      <AppContext.Provider
+        value={{
+          cart,
+          currency,
+          cartState,
+          products,
+          updateProducts,
+          updateCart,
+          updateCurrency,
+          toggleCart,
+        }}
+      >
+        <Cart />
+        <Header />
+        <SubHeader />
+        <Products />
+      </AppContext.Provider>
+    </>
   );
 }
 

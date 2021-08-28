@@ -4,9 +4,20 @@ import cartIcon from "Images/cart-icon.png";
 import MenuBtn from "Components/Common/MenuBtn";
 import "./Header.scss";
 import cx from "classnames";
+import { useAppContext } from "AppContext";
 
 function Header() {
   const [showMobileNav, toggleMobileNav] = useState(false);
+  const { cart, toggleCart } = useAppContext();
+  const calculateCartItems = () => {
+    let total = 0;
+    cart.forEach((item) => (total += item.quantity));
+    return total;
+  };
+  function openCart(e) {
+    e.preventDefault();
+    toggleCart(true);
+  }
   return (
     <header>
       <nav className="navbar navbar-light desktop-nav">
@@ -50,16 +61,16 @@ function Header() {
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/">
+            <a className="nav-link" href="/" onClick={openCart}>
               <div className="cart-icon-wrapper">
                 <img className="cart-icon" src={cartIcon} alt="LUMIN" />
-                <span>1</span>
+                <span>{calculateCartItems()}</span>
               </div>
             </a>
           </li>
           <li className="nav-item">
             <select className="form-select" aria-label="Default select example">
-              <option selected>EN</option>
+              <option>EN</option>
               <option value="1">AR</option>
               <option value="2">FR</option>
               <option value="3">ES</option>
@@ -79,12 +90,7 @@ function Header() {
               toggleMobileNav(false);
             }}
           >
-            <svg
-              viewBox="0 0 256 512"
-              focusable="false"
-              role="presentation"
-              class="css-1tu97pq"
-            >
+            <svg viewBox="0 0 256 512" focusable="false" role="presentation">
               <path
                 fill="currentColor"
                 d="M231.293 473.899l19.799-19.799c4.686-4.686 4.686-12.284 0-16.971L70.393 256 251.092 74.87c4.686-4.686 4.686-12.284 0-16.971L231.293 38.1c-4.686-4.686-12.284-4.686-16.971 0L4.908 247.515c-4.686 4.686-4.686 12.284 0 16.971L214.322 473.9c4.687 4.686 12.285 4.686 16.971-.001z"
@@ -92,7 +98,7 @@ function Header() {
             </svg>
           </button>
         </div>
-        <div class="categories-wrapper">
+        <div className="categories-wrapper">
           <a className="active" href="/">
             Skin
           </a>
