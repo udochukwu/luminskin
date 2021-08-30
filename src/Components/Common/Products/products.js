@@ -32,7 +32,8 @@ function Products() {
     setPersonalizations(updatedPersonalization);
   };
 
-  const pushToCart = () => {
+  const pushToCart = (e) => {
+    e.preventDefault();
     const duplicate = cart.find((c) => c.id === cartItem.id);
     if (duplicate) {
       const newCart = cart.map((c) =>
@@ -53,7 +54,7 @@ function Products() {
 
   useEffect(() => {
     setPersonalizations(getDefaultPersonalization(cartItem));
-    if(data && data.products)updateProducts(data.products);
+    if (data && data.products) updateProducts(data.products);
   }, [cartItem, data]);
 
   const addToCart = (productId) => {
@@ -63,8 +64,27 @@ function Products() {
       toggleModal(true);
     }
   };
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+  if (loading)
+    return (
+      <section className="loading">
+        <div className="container">
+          <div className="row">
+            {[1, 2].map((p) => (
+              <div className="col-6">
+                <p className="card-text placeholder-glow">
+                  <span className="placeholder col-7 bg-secondary"></span>
+                  <span className="placeholder col-4 bg-secondary"></span>
+                  <span className="placeholder col-4 bg-secondary"></span>
+                  <span className="placeholder col-6 bg-secondary"></span>
+                  <span className="placeholder col-8 bg-secondary"></span>
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  if (error) return <p className="p-5 text-center">Something Went wrong.</p>;
   return (
     <>
       <section className="products-section">
