@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./App.scss";
 import Header from "Components/Layout/Header";
 import Cart from "Components/Layout/Cart";
 import { AppContext } from "./AppContext";
@@ -32,7 +31,6 @@ function App() {
   }
 
   function updateProducts(newProducts){
-    console.log('updating products..', newProducts)
     setProducts(newProducts);
   }
   return (
