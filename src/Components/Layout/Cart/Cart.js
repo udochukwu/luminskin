@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./Cart.scss";
 import Modal from "Components/Common/Modal";
 import { useAppContext } from "AppContext";
 import { GET_CURRENCIES } from "Apollo/queries";
 import { useQuery } from "@apollo/client";
+import cx from "classnames";
+
 
 export function Cart() {
   const {
@@ -15,7 +17,7 @@ export function Cart() {
     toggleCart,
     products,
   } = useAppContext();
-  const { loading, error, data } = useQuery(GET_CURRENCIES);
+  const { data } = useQuery(GET_CURRENCIES);
   const handleChange = (event) => {
     updateCurrency(event.target?.value);
   };
@@ -37,12 +39,6 @@ export function Cart() {
       c.id === id ? { ...c, quantity: c.quantity > 1 ? c.quantity - 1 : 1 } : c
     );
     updateCart(newCart);
-  }
-
-  function calculateTotal() {
-    let total = 0;
-    cart.forEach((item) => (total += item.quantity * item.price));
-    return total;
   }
 
   function formatCart() {
@@ -139,10 +135,10 @@ export function Cart() {
               {calculateTotal()}.00
             </span>
           </div>
-          <button className="btn outline">
+          <button className={cx("btn outline", { disabled: !finalCart?.length })}>
             Make this a subscription (Save 20%)
           </button>
-          <button className="btn solid">proceed to checkout</button>
+          <button className={cx("btn solid", { disabled: !finalCart?.length })}>proceed to checkout</button>
         </div>
       </div>
     </Modal>

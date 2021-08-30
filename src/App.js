@@ -5,8 +5,7 @@ import Cart from "Components/Layout/Cart";
 import { AppContext } from "./AppContext";
 import Products from "Components/Common/Products";
 import SubHeader from "Components/Layout/SubHeader";
-import { GET_PRODUCTS } from "Apollo/queries";
-import { useQuery } from "@apollo/client";
+import Footer from "Components/Layout/Footer";
 
 function App() {
   const [cart, setCart] = useState(
@@ -54,6 +53,7 @@ function App() {
         <Header />
         <SubHeader />
         <Products />
+        <Footer/>
       </AppContext.Provider>
     </>
   );
